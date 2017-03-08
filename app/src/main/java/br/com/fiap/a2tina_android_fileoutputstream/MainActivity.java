@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,5 +33,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ler(View view) {
+        try{
+            FileInputStream fis = openFileInput("teste.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            //Lendo um arquivo
+            String texto = br.readLine();//Cada vez que chamamos o readline ele vai para outra linha
+            fis.close();
+            Toast.makeText(this, texto, Toast.LENGTH_SHORT).show();
+
+        }catch (Exception e){
+
+        }
     }
 }
